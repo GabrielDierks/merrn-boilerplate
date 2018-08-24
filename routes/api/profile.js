@@ -53,7 +53,7 @@ router.get('/all', (req,res) => {
        .populate('user', ['name', 'avatar'])
        .then(profiles => {
            if(!profiles) {
-               errors.noprofile = 'There re no profiles!';
+               errors.noprofile = 'There are no profiles!';
                return res.status(404).json(errors);
            }
            res.json(profiles);
@@ -298,7 +298,7 @@ router.delete('/',
     Profile.findOneAndRemove({ user: req.user.id })
         .then(() => {
             User.findOneAndRemove({ _id: req.user.id })
-                .then(() => res.json({succes: true }))
+                .then(() => res.json({success: true }))
         })
 
     });
