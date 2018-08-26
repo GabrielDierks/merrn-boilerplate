@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link, withRouter} from 'react-router-dom';
 
 
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
-import { createProfile, getCurrentProfile }from '../../actions/profileActions';
+import {createProfile, getCurrentProfile} from '../../actions/profileActions';
 import isEmpty from '../../validation/is-empty';
 
 class CreateProfile extends Component {
@@ -42,7 +42,7 @@ class CreateProfile extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
-            this.setState({ errors: nextProps.errors });
+            this.setState({errors: nextProps.errors});
         }
 
         if (nextProps.profile.profile) {
@@ -52,17 +52,17 @@ class CreateProfile extends Component {
             const skillsCSV = profile.skills.join(',');
 
             // If profile field doesnt exist, make empty string
-            profile.company =!isEmpty(profile.company) ? profile.company: '';
-            profile.website =!isEmpty(profile.website) ? profile.website: '';
-            profile.location =!isEmpty(profile.location) ? profile.location: '';
-            profile.githubusername =!isEmpty(profile.githubusername) ? profile.githubusername: '';
-            profile.bio =!isEmpty(profile.bio) ? profile.bio: '';
-            profile.social = !isEmpty(profile.social) ? profile.social: '';
-            profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter: '';
-            profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook: '';
-            profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin: '';
-            profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube: '';
-            profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram: '';
+            profile.company = !isEmpty(profile.company) ? profile.company : '';
+            profile.website = !isEmpty(profile.website) ? profile.website : '';
+            profile.location = !isEmpty(profile.location) ? profile.location : '';
+            profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername : '';
+            profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
+            profile.social = !isEmpty(profile.social) ? profile.social : '';
+            profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : '';
+            profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : '';
+            profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : '';
+            profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : '';
+            profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : '';
 
             // Set component fields state
             this.setState({
@@ -86,6 +86,7 @@ class CreateProfile extends Component {
     onSubmit(e) {
         e.preventDefault();
 
+
         const profileData = {
             handle: this.state.handle,
             company: this.state.company,
@@ -102,15 +103,27 @@ class CreateProfile extends Component {
             instagram: this.state.instagram
         };
 
+        profileData.company = !isEmpty(profileData.company) ? profileData.company : ' ';
+        profileData.website = !isEmpty(profileData.website) ? profileData.website : ' ';
+        profileData.location = !isEmpty(profileData.location) ? profileData.location : ' ';
+        profileData.githubusername = !isEmpty(profileData.githubusername) ? profileData.githubusername : ' ';
+        profileData.bio = !isEmpty(profileData.bio) ? profileData.bio : ' ';
+        profileData.social = !isEmpty(profileData.social) ? profileData.social : ' ';
+        profileData.twitter = !isEmpty(profileData.twitter) ? profileData.twitter : ' ';
+        profileData.facebook = !isEmpty(profileData.facebook) ? profileData.facebook : ' ';
+        profileData.linkedin = !isEmpty(profileData.linkedin) ? profileData.linkedin : ' ';
+        profileData.youtube = !isEmpty(profileData.youtube) ? profileData.youtube : ' ';
+        profileData.instagram = !isEmpty(profileData.instagram) ? profileData.instagram : ' ';
+
         this.props.createProfile(profileData, this.props.history);
     }
 
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
-        const { errors, displaySocialInputs } = this.state;
+        const {errors, displaySocialInputs} = this.state;
 
         let socialInputs;
 
@@ -163,16 +176,16 @@ class CreateProfile extends Component {
 
         // Select options for status
         const options = [
-            { label: '* Select Professional Status', value: 0 },
-            { label: 'Developer', value: 'Developer' },
-            { label: 'Junior Developer', value: 'Junior Developer' },
-            { label: 'Senior Developer', value: 'Senior Developer' },
-            { label: 'Manager', value: 'Manager' },
-            { label: 'Student or Learning', value: 'Student or Learning' },
-            { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
-            { label: 'Intern', value: 'Intern' },
-            { label: 'Other', value: 'Other' },
-            { label: 'Spaßt', value: 'Spaßt' },
+            {label: '* Select Professional Status', value: 0},
+            {label: 'Developer', value: 'Developer'},
+            {label: 'Junior Developer', value: 'Junior Developer'},
+            {label: 'Senior Developer', value: 'Senior Developer'},
+            {label: 'Manager', value: 'Manager'},
+            {label: 'Student or Learning', value: 'Student or Learning'},
+            {label: 'Instructor or Teacher', value: 'Instructor or Teacher'},
+            {label: 'Intern', value: 'Intern'},
+            {label: 'Other', value: 'Other'},
+            {label: 'Spaßt', value: 'Spaßt'},
         ];
 
         return (
