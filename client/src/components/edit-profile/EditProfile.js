@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Link, withRouter} from 'react-router-dom';
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
-import {createProfile, getCurrentProfile} from '../../actions/profileActions';
+import { createProfile, getCurrentProfile } from '../../actions/profileActions';
 import isEmpty from '../../validation/is-empty';
 
 class CreateProfile extends Component {
@@ -29,7 +28,7 @@ class CreateProfile extends Component {
             linkedin: '',
             youtube: '',
             instagram: '',
-            errors: {}
+            errors: {},
         };
 
         this.onChange = this.onChange.bind(this);
@@ -42,7 +41,7 @@ class CreateProfile extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
-            this.setState({errors: nextProps.errors});
+            this.setState({ errors: nextProps.errors });
         }
 
         if (nextProps.profile.profile) {
@@ -86,7 +85,6 @@ class CreateProfile extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-
         const profileData = {
             handle: this.state.handle,
             company: this.state.company,
@@ -100,13 +98,15 @@ class CreateProfile extends Component {
             facebook: this.state.facebook,
             linkedin: this.state.linkedin,
             youtube: this.state.youtube,
-            instagram: this.state.instagram
+            instagram: this.state.instagram,
         };
 
         profileData.company = !isEmpty(profileData.company) ? profileData.company : ' ';
         profileData.website = !isEmpty(profileData.website) ? profileData.website : ' ';
         profileData.location = !isEmpty(profileData.location) ? profileData.location : ' ';
-        profileData.githubusername = !isEmpty(profileData.githubusername) ? profileData.githubusername : ' ';
+        profileData.githubusername = !isEmpty(profileData.githubusername)
+            ? profileData.githubusername
+            : ' ';
         profileData.bio = !isEmpty(profileData.bio) ? profileData.bio : ' ';
         profileData.social = !isEmpty(profileData.social) ? profileData.social : ' ';
         profileData.twitter = !isEmpty(profileData.twitter) ? profileData.twitter : ' ';
@@ -119,11 +119,11 @@ class CreateProfile extends Component {
     }
 
     onChange(e) {
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
-        const {errors, displaySocialInputs} = this.state;
+        const { errors, displaySocialInputs } = this.state;
 
         let socialInputs;
 
@@ -176,16 +176,16 @@ class CreateProfile extends Component {
 
         // Select options for status
         const options = [
-            {label: '* Select Professional Status', value: 0},
-            {label: 'Developer', value: 'Developer'},
-            {label: 'Junior Developer', value: 'Junior Developer'},
-            {label: 'Senior Developer', value: 'Senior Developer'},
-            {label: 'Manager', value: 'Manager'},
-            {label: 'Student or Learning', value: 'Student or Learning'},
-            {label: 'Instructor or Teacher', value: 'Instructor or Teacher'},
-            {label: 'Intern', value: 'Intern'},
-            {label: 'Other', value: 'Other'},
-            {label: 'Spaßt', value: 'Spaßt'},
+            { label: '* Select Professional Status', value: 0 },
+            { label: 'Developer', value: 'Developer' },
+            { label: 'Junior Developer', value: 'Junior Developer' },
+            { label: 'Senior Developer', value: 'Senior Developer' },
+            { label: 'Manager', value: 'Manager' },
+            { label: 'Student or Learning', value: 'Student or Learning' },
+            { label: 'Instructor or Teacher', value: 'Instructor or Teacher' },
+            { label: 'Intern', value: 'Intern' },
+            { label: 'Other', value: 'Other' },
+            { label: 'Spaßt', value: 'Spaßt' },
         ];
 
         return (
@@ -307,7 +307,10 @@ CreateProfile.propTypes = {
 
 const mapStateToProps = state => ({
     profile: state.profile,
-    errors: state.errors
+    errors: state.errors,
 });
 
-export default connect(mapStateToProps, {createProfile, getCurrentProfile})(withRouter(CreateProfile));
+export default connect(
+    mapStateToProps,
+    { createProfile, getCurrentProfile }
+)(withRouter(CreateProfile));

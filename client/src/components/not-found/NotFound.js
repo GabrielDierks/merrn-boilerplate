@@ -7,4 +7,4 @@ export default () => {
             <p>Sorry, this page does not exist</p>
         </div>
     );
-}
+};

@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
-import { createProfile }from '../../actions/profileActions';
+import { createProfile } from '../../actions/profileActions';
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -28,7 +27,7 @@ class CreateProfile extends Component {
             linkedin: '',
             youtube: '',
             instagram: '',
-            errors: {}
+            errors: {},
         };
 
         this.onChange = this.onChange.bind(this);
@@ -57,7 +56,7 @@ class CreateProfile extends Component {
             facebook: this.state.facebook,
             linkedin: this.state.linkedin,
             youtube: this.state.youtube,
-            instagram: this.state.instagram
+            instagram: this.state.instagram,
         };
 
         this.props.createProfile(profileData, this.props.history);
@@ -251,7 +250,10 @@ CreateProfile.propTypes = {
 
 const mapStateToProps = state => ({
     profile: state.profile,
-    errors: state.errors
+    errors: state.errors,
 });
 
-export default connect(mapStateToProps, {createProfile})(withRouter(CreateProfile));
+export default connect(
+    mapStateToProps,
+    { createProfile }
+)(withRouter(CreateProfile));

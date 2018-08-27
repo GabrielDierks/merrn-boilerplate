@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { deleteEducation } from '../../actions/profileActions';
 
-
 class Education extends Component {
     onDeleteClick(id) {
         this.props.deleteEducation(id);
@@ -17,13 +16,16 @@ class Education extends Component {
                 <td>{edu.degree}</td>
                 <td>{edu.fieldofstudy}</td>
                 <td>
-                    <Moment format="DD.MM.YYYY">{edu.from}</Moment>{' '}-{' '}
-                    {edu.to === null ? ('Current') : (
-                        <Moment format="DD.MM.YYYY">{edu.to}</Moment>
-                    )}
+                    <Moment format="DD.MM.YYYY">{edu.from}</Moment> -{' '}
+                    {edu.to === null ? 'Current' : <Moment format="DD.MM.YYYY">{edu.to}</Moment>}
                 </td>
                 <td>
-                    <button onClick={this.onDeleteClick.bind(this, edu._id)} className="btn btn-danger">Delete</button>
+                    <button
+                        onClick={this.onDeleteClick.bind(this, edu._id)}
+                        className="btn btn-danger"
+                    >
+                        Delete
+                    </button>
                 </td>
             </tr>
         ));
@@ -32,13 +34,13 @@ class Education extends Component {
                 <h4 className="mb-4">Education Credentials</h4>
                 <table className="table">
                     <thead>
-                    <tr>
-                        <th>School</th>
-                        <th>Degree</th>
-                        <th>Field of study</th>
-                        <th>Years</th>
-                        <th />
-                    </tr>
+                        <tr>
+                            <th>School</th>
+                            <th>Degree</th>
+                            <th>Field of study</th>
+                            <th>Years</th>
+                            <th />
+                        </tr>
                     </thead>
                     <tbody>{education}</tbody>
                 </table>
@@ -48,7 +50,10 @@ class Education extends Component {
 }
 
 Education.propTypes = {
-    deleteEducation: PropTypes.func.isRequired
+    deleteEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, { deleteEducation })(Education);
+export default connect(
+    null,
+    { deleteEducation }
+)(Education);

@@ -15,16 +15,15 @@ class Profiles extends Component {
         const { profiles, loading } = this.props.profile;
         let profileItems;
 
-        if(profiles === null || loading) {
-            profileItems = <Spinner/>;
-        }
-        else {
-            if(profiles.length > 0) {
+        if (profiles === null || loading) {
+            profileItems = <Spinner />;
+        } else {
+            if (profiles.length > 0) {
                 profileItems = profiles.map(profile => (
-                    <ProfileItem key={profile._id} profile={profile}/>
-                ))
+                    <ProfileItem key={profile._id} profile={profile} />
+                ));
             } else {
-                profileItems = <h4>No profiles found!</h4>
+                profileItems = <h4>No profiles found!</h4>;
             }
         }
         return (
@@ -33,9 +32,7 @@ class Profiles extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <h1 className="display-4 text-center">Find friends</h1>
-                            <p className="lead text-center">
-                                Browse and connect with friends!
-                            </p>
+                            <p className="lead text-center">Browse and connect with friends!</p>
                             {profileItems}
                         </div>
                     </div>
@@ -47,11 +44,14 @@ class Profiles extends Component {
 
 Profiles.propTypes = {
     getProfiles: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-    profile: state.profile
+    profile: state.profile,
 });
 
-export default connect(mapStateToProps ,{ getProfiles })(Profiles);
+export default connect(
+    mapStateToProps,
+    { getProfiles }
+)(Profiles);

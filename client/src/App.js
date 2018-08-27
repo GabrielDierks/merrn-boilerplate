@@ -71,11 +71,7 @@ class App extends Component {
                                 />
                             </Switch>
                             <Switch>
-                                <PrivateRoute
-                                    exact
-                                    path="/edit-profile"
-                                    component={EditProfile}
-                                />
+                                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
                             </Switch>
                             <Switch>
                                 <PrivateRoute
@@ -92,7 +88,6 @@ class App extends Component {
                                 />
                             </Switch>
                             <Route exact path="/not-found" component={NotFound} />
-
                         </div>
                         <Footer />
                     </div>

@@ -11,14 +11,12 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            errors: {}
+            errors: {},
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-
-
 
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
@@ -95,7 +93,7 @@ class Login extends Component {
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

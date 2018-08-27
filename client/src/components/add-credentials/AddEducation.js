@@ -25,12 +25,11 @@ class AddEducation extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onCheck = this.onCheck.bind(this);
-
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.errors) {
-            this.setState({ errors: nextProps.errors})
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
         }
     }
 
@@ -44,20 +43,20 @@ class AddEducation extends Component {
             from: this.state.from,
             to: this.state.to,
             current: this.state.current,
-            description: this.state.description
+            description: this.state.description,
         };
 
         this.props.addEducation(eduData, this.props.history);
     }
 
     onChange(e) {
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     onCheck(e) {
         this.setState({
             disabled: !this.state.disabled,
-            current: !this.state.current
+            current: !this.state.current,
         });
     }
     render() {
@@ -115,8 +114,15 @@ class AddEducation extends Component {
                                     disabled={this.state.disabled ? 'disabled' : ''}
                                 />
                                 <div className="form-check mb-4">
-                                    <input type="checkbox"className="form-check-input" name="current" value={this.state.current}
-                                           checked={this.state.current} onChange={this.onCheck} id="current" />
+                                    <input
+                                        type="checkbox"
+                                        className="form-check-input"
+                                        name="current"
+                                        value={this.state.current}
+                                        checked={this.state.current}
+                                        onChange={this.onCheck}
+                                        id="current"
+                                    />
                                     <label htmlFor="current" className="form-check-label">
                                         Current Schhol
                                     </label>
@@ -129,7 +135,11 @@ class AddEducation extends Component {
                                     error={errors.description}
                                     info="Tell us about the school experience!"
                                 />
-                                <input type="submit" value="Add Education" className="btn btn-info btn-block mt-4" />
+                                <input
+                                    type="submit"
+                                    value="Add Education"
+                                    className="btn btn-info btn-block mt-4"
+                                />
                             </form>
                         </div>
                     </div>
@@ -150,4 +160,7 @@ const mapStateToProps = state => ({
     errors: state.errors,
 });
 
-export default connect(mapStateToProps, { addEducation })(withRouter(AddEducation));
+export default connect(
+    mapStateToProps,
+    { addEducation }
+)(withRouter(AddEducation));
