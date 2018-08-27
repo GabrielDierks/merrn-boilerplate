@@ -5,12 +5,14 @@ import {
     PROFILE_LOADING,
     CLEAR_CURRENT_PROFILE,
     GET_ERRORS,
+    CLEAR_ERRORS,
     SET_CURRENT_USER,
     GET_PROFILES,
 } from './types';
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
+    dispatch(clearErrors());
     dispatch(setProfileLoading());
     axios
         .get('/api/profile')
@@ -172,5 +174,12 @@ export const deleteAccount = () => dispatch => {
                     payload: err.response.data,
                 })
             );
+    }
+};
+
+// Clear ERRORS
+export const clearErrors = () =>{
+    return{
+        type:CLEAR_ERRORS
     }
 };
