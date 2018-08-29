@@ -36,15 +36,20 @@ class PostItem extends Component {
         return (
             <div className="card card-body mb-3">
                 <div className="row">
-                    <div className="col-md-2">
-                        <Link to={`/profile/${post.handle}`}>
-                            <img className="rounded-circle d-none d-md-block"
-                                 src={post.avatar}
-                                 alt={post.name}/>
-                        </Link>
-                        <br/>
-                        <p className="text-center">{post.name}</p>
+                    <Link to={`/profile/${post.handle}`}>
+
+                    <div className="col-md-2 d-flex p-2 justify-content-left align-items-left mb-3">
+                            <div className="col-3">
+                                <img className="rounded-circle"
+                                     src={post.avatar}
+                                     alt={post.name}/>
+                            </div>
+                            <div className="col-5 mt-3">
+                                <p className="text-left">{post.name}</p>
+                            </div>
                     </div>
+                    </Link>
+
                     <div className="col-md-10">
                         <p className="lead">{post.text}</p>
                         {showActions ? (<span>

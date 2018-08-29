@@ -30,18 +30,26 @@ class Dashboard extends Component {
             // Check if logged in user has profile data
             if (Object.keys(profile).length > 0) {
                 dashboardContent = (
-                    <div>
-                        <p className="lead text-muted">
-                            Welcome <Link to={`/profile/${profile.handle}`}>{user.name} </Link>
-                        </p>
-                        <ProfileActions />
-                        <Experience experience={profile.experience} />
-                        <Education education={profile.education} />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12 m-auto" style={{ 'padding-left': '0'}}>
+                                <p className="lead text-muted">
+                                    Welcome{' '}
+                                    <Link to={`/profile/${profile.handle}`}>{user.name} </Link>
+                                </p>
+                                <ProfileActions />
+                                <Experience experience={profile.experience} />
+                                <Education education={profile.education} />
 
-                        <div style={{ marginBottom: '60px' }} />
-                        <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">
-                            Delete my Account
-                        </button>
+                                <div style={{ marginBottom: '60px' }} />
+                                <button
+                                    onClick={this.onDeleteClick.bind(this)}
+                                    className="btn btn-danger"
+                                >
+                                    Delete my Account
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 );
             } else {

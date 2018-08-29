@@ -8,7 +8,7 @@ const middleware = [thunk];
 
 
 const composeEnhancers =
-    typeof process.env.NODE_ENV !== 'production' &&
+    process.env.NODE_ENV !== 'production' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
             // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...

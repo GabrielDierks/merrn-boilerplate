@@ -15,15 +15,13 @@ class Landing extends Component {
     render() {
         return (
             <div className="landing">
-                <div className="dark-overlay landing-inner text-light">
+                <div className="landing-inner text-dark">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 text-center">
-                                <h1 className="display-3 mb-4">MERRN Boilerplate</h1>
+                                <h1 className="display-3 mb-4">Facegram</h1>
                                 <p className="lead">
-                                    {' '}
-                                    A boilerplate for a Single-page Application with MongoDB,
-                                    ExpressJS, React, Redux and NodeJS
+                                   Welcome to Facegram. A social network for cool people &#60;3
                                 </p>
                                 <hr />
                                 <Link to="/register" className="btn btn-lg btn-danger mr-2">

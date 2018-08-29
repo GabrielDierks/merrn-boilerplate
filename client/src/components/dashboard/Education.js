@@ -32,6 +32,7 @@ class Education extends Component {
         return (
             <div>
                 <h4 className="mb-4">Education Credentials</h4>
+                <div style={{ overflowX: 'scroll' }}>
                 <table className="table">
                     <thead>
                         <tr>
@@ -44,6 +45,7 @@ class Education extends Component {
                     </thead>
                     <tbody>{education}</tbody>
                 </table>
+                </div>
             </div>
         );
     }
