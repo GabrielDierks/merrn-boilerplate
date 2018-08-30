@@ -27,7 +27,7 @@ class CommentItem extends Component {
                                  src={comment.avatar}
                                  alt={comment.name}/>
                         </div>
-                        <div className="col-5 mt-3">
+                        <div className="col-6 mt-3">
                             <p className="text-left">{comment.name}</p>
                         </div>
                     </div>

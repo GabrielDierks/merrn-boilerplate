@@ -38,13 +38,13 @@ class PostItem extends Component {
                 <div className="row">
                     <Link to={`/profile/${post.handle}`}>
 
-                    <div className="col-md-2 d-flex p-2 justify-content-left align-items-left mb-3">
+                    <div className="d-flex p-2 justify-content-left align-items-left mb-3">
                             <div className="col-3">
                                 <img className="rounded-circle"
                                      src={post.avatar}
                                      alt={post.name}/>
                             </div>
-                            <div className="col-5 mt-3">
+                            <div className="col-6 mt-3">
                                 <p className="text-left">{post.name}</p>
                             </div>
                     </div>
