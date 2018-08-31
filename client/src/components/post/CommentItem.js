@@ -21,7 +21,7 @@ class CommentItem extends Component {
 
                     <Link to={`/profile/${comment.handle}`}>
 
-                    <div className="col-md-2 d-flex p-2 justify-content-left align-items-left mb-3">
+                    <div className="d-flex p-2 justify-content-left align-items-left mb-3">
                         <div className="col-3">
                             <img className="rounded-circle"
                                  src={comment.avatar}
