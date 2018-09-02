@@ -44,18 +44,12 @@ const PostSchema = new Schema({
             date: {
                 type: Date,
                 default: Date.now
-            },
-            handle: {
-                type: String
             }
         }
     ],
     date: {
         type: Date,
         default: Date.now
-    },
-    handle: {
-        type: String
     }
 });
 

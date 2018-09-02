@@ -22,6 +22,8 @@ class PostForm extends Component {
         }
     }
 
+
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -42,6 +44,8 @@ class PostForm extends Component {
     }
 
     render() {
+
+
 
         const { errors } = this.state;
         return (
@@ -71,7 +75,8 @@ PostForm.propTypes = {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
+    errors: state.errors,
+
 });
 
 export default connect(mapStateToProps, {addPost})(PostForm);
