@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addPost } from '../../actions/postActions';
+import { getProfiles } from '../../actions/profileActions';
 
 class PostForm extends Component {
     constructor(props) {
@@ -14,6 +15,12 @@ class PostForm extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.getProfiles();
+
+
     }
 
     componentWillReceiveProps(newProps) {
@@ -28,13 +35,28 @@ class PostForm extends Component {
         e.preventDefault();
 
         const { user } = this.props.auth;
+        const { auth, profile } = this.props;
 
+        let handle;
+
+
+        if (profile.profiles !== null) {
+            for (let i = 0; i < profile.profiles.length; i++) {
+                if (auth.user.id === profile.profiles[i].user._id) {
+                    handle = profile.profiles[i].handle;
+                    console.log("handle", handle);
+                }
+
+            }
+        }
         const newPost = {
             text: this.state.text,
             name: user.name,
-            avatar: user.avatar
+            avatar: user.avatar,
+            handle: handle
         };
 
+        console.log("newPost",newPost)
         this.props.addPost(newPost);
         this.setState({ text: ''});
     }
@@ -68,15 +90,18 @@ class PostForm extends Component {
 }
 
 PostForm.propTypes = {
+    getProfiles: PropTypes.func.isRequired,
     addPost: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors,
+    profile: state.profile
 
 });
 
-export default connect(mapStateToProps, {addPost})(PostForm);
+export default connect(mapStateToProps, {getProfiles, addPost})(PostForm);

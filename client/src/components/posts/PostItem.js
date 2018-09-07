@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { addLike, removeLike, deletePost } from '../../actions/postActions';
-import { getProfiles } from '../../actions/profileActions';
+
 
 class PostItem extends Component {
 
@@ -29,60 +29,16 @@ class PostItem extends Component {
             return false;
         }
     }
-    componentDidMount() {
-        this.props.getProfiles();
-    }
+
 
 
     render() {
-        const { profile, post, auth, showActions } = this.props;
-
-
-        // console.log("this.props", this.props);
-        //         // let handle = [];
-        //         // let handlecount;
-        //         //
-        //         // if (profile.profiles !== null && posts.length > 0) {
-        //         //     // console.log("profile.profiles[1]", profile.profiles[1]);
-        //         //     // console.log("posts.length", posts.length);
-        //         //     for (let o = 0; o < posts.length; o++) {
-        //         //         for (let i = 0; i < profile.profiles.length; i++) {
-        //         //             if (posts[o].user === profile.profiles[i].user._id) {
-        //         //                 handle.push(profile.profiles[i].handle);
-        //         //
-        //         //                 console.log('i', i);
-        //         //                 console.log('o', o);
-        //         //                 console.log("handle", handle);
-        //         //
-        //         //             }
-        //         //         }
-        //         //     }
-        //         // }
-        let handle;
-
-        if (post.user === auth.user.id) {
-            if (profile.profiles !== null) {
-                    for (let i = 0; i < profile.profiles.length; i++) {
-                        if (post.user === profile.profiles[i].user._id) {
-                            handle = profile.profiles[i].handle;
-                            console.log("handle", handle);
-                        }
-
-                    }
-
-            }
-        }
-
-        else {
-            handle = "gabrieldierks";
-        }
-
-
+        const { post, auth, showActions } = this.props;
 
         return (
             <div className="card card-body mb-3">
                 <div className="row">
-                    <Link to={`/profile/${handle}`}>
+                    <Link to={`/profile/${post.handle}`}>
 
                     <div className="d-flex p-2 justify-content-left align-items-left mb-3">
                             <div className="col-3">
@@ -128,19 +84,15 @@ PostItem.defaultProps = {
 };
 
 PostItem.propTypes = {
-    getProfiles: PropTypes.func.isRequired,
     addLike: PropTypes.func.isRequired,
     removeLike: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired,
-    profile: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    profile: state.profile
-
+    auth: state.auth
 });
 
-export default connect(mapStateToProps, { getProfiles, addLike, removeLike, deletePost})(PostItem);
+export default connect(mapStateToProps, { addLike, removeLike, deletePost})(PostItem);

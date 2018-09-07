@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addComment } from '../../actions/postActions';
+import { getProfiles } from '../../actions/profileActions';
 
 class CommentForm extends Component {
     constructor(props) {
@@ -27,13 +28,30 @@ class CommentForm extends Component {
 
         const { user } = this.props.auth;
         const { postId } = this.props;
+        const { auth, profile } = this.props;
+
+        let handle;
+
+
+        if (profile.profiles !== null) {
+            for (let i = 0; i < profile.profiles.length; i++) {
+                if (auth.user.id === profile.profiles[i].user._id) {
+                    handle = profile.profiles[i].handle;
+                    console.log("handle", handle);
+                }
+
+            }
+        }
 
         const newComment = {
             text: this.state.text,
             name: user.name,
-            avatar: user.avatar
+            avatar: user.avatar,
+            handle: handle
+
         };
 
+        console.log("newPost",newComment);
         this.props.addComment(postId, newComment);
         this.setState({ text: ''});
     }
@@ -68,15 +86,20 @@ class CommentForm extends Component {
 }
 
 CommentForm.propTypes = {
+    getProfiles: PropTypes.func.isRequired,
     addComment: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     postId: PropTypes.string.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired
+
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
+    errors: state.errors,
+    profile: state.profile
+
 });
 
-export default connect(mapStateToProps, {addComment})(CommentForm);
+export default connect(mapStateToProps, {getProfiles, addComment})(CommentForm);
