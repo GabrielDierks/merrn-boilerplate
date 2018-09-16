@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import CommentForm from './CommentForm';
 import CommentFeed from './CommentFeed';
-import PostItem from '../posts/PostItem';
+import PostItem from './PostItem';
 import Spinner from '../common/Spinner';
 import { getPost } from '../../actions/postActions';
 

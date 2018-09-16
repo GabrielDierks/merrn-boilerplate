@@ -44,7 +44,7 @@ class Dashboard extends Component {
                                 <div style={{ marginBottom: '60px' }} />
                                 <button
                                     onClick={this.onDeleteClick.bind(this)}
-                                    className="btn btn-info"
+                                    className="btn btn-danger"
                                 >
                                     Delete my Account
                                 </button>
