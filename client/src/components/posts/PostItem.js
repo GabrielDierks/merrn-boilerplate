@@ -35,6 +35,8 @@ class PostItem extends Component {
     render() {
         const { post, auth, showActions } = this.props;
 
+        const comments = this.props.post.comments.length;
+
         return (
             <div className="card card-body mb-3">
                 <div className="row">
@@ -64,7 +66,7 @@ class PostItem extends Component {
                         </button>
 
                         <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                            Comments
+                            {comments}{ comments ===1  ? ' comment': ' comments'}
                         </Link>
                             {post.user === auth.user.id ? (
                                 <button onClick={this.onDeleteClick.bind(this, post._id)} type="button" className="btn btn-danger mr-1">

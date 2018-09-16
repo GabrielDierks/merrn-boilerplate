@@ -21,6 +21,14 @@ module.exports = function validateExperienceInput(data) {
         errors.from = 'From date field is required!';
     }
 
+    if (!Validator.isLength(data.from, { max: 10})) {
+        errors.from = 'Please enter a correct date.';
+    }
+
+    if (!Validator.isLength(data.to, { max: 10})) {
+        errors.to = 'Please enter a correct date.';
+    }
+
     return {
         errors,
         isValid: isEmpty(errors)

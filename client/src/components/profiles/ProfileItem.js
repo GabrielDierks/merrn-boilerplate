@@ -11,22 +11,24 @@ class ProfileItem extends Component {
             <div className="card card-body bg-light mb-3">
                 <div className="row">
                     <div className="col-2">
+                        <Link to={`/profile/${profile.handle}`}>
                         <img
                             src={profile.user.avatar}
                             alt={profile.user.name}
                             className="rounded-circle"
                         />
+                        </Link>
                     </div>
                     <div className="col-lg6 col-md-4 col-8">
-                        <h3>{profile.user.name}</h3>
+                        <Link to={`/profile/${profile.handle}`}>
+                        <h3 style={{color:'#17a2b8'}}>{profile.user.name}</h3>
+                        </Link>
                         <p>
                             {profile.status}{' '}
                             {isEmpty(profile.company) ? null : <span>at {profile.company}</span>}
                         </p>
                         <p>{isEmpty(profile.location) ? null : <span>{profile.location}</span>}</p>
-                        <Link to={`/profile/${profile.handle}`} className="btn btn-info">
-                            View Profile
-                        </Link>
+
                     </div>
                     <div className="col-md-4 d-none d-md-block">
                         <h4>Skill Set</h4>

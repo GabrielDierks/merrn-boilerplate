@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { addPost } from '../../actions/postActions';
-import { getProfiles } from '../../actions/profileActions';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class PostForm extends Component {
     constructor(props) {
@@ -18,9 +18,7 @@ class PostForm extends Component {
     }
 
     componentDidMount() {
-        this.props.getProfiles();
-
-
+        this.props.getCurrentProfile();
     }
 
     componentWillReceiveProps(newProps) {
@@ -35,20 +33,9 @@ class PostForm extends Component {
         e.preventDefault();
 
         const { user } = this.props.auth;
-        const { auth, profile } = this.props;
+        const { profile } = this.props;
+        const handle = profile.profile.handle;
 
-        let handle;
-
-
-        if (profile.profiles !== null) {
-            for (let i = 0; i < profile.profiles.length; i++) {
-                if (auth.user.id === profile.profiles[i].user._id) {
-                    handle = profile.profiles[i].handle;
-                    console.log("handle", handle);
-                }
-
-            }
-        }
         const newPost = {
             text: this.state.text,
             name: user.name,
@@ -56,7 +43,6 @@ class PostForm extends Component {
             handle: handle
         };
 
-        console.log("newPost",newPost)
         this.props.addPost(newPost);
         this.setState({ text: ''});
     }
@@ -90,7 +76,7 @@ class PostForm extends Component {
 }
 
 PostForm.propTypes = {
-    getProfiles: PropTypes.func.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired,
     addPost: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
@@ -104,4 +90,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, {getProfiles, addPost})(PostForm);
+export default connect(mapStateToProps, { getCurrentProfile, addPost})(PostForm);
