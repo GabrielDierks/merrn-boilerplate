@@ -110,6 +110,7 @@ export const addComment = (postId, commentData) => dispatch => {
                 type: GET_POST,
                 payload: res.data
             }))
+        .then(res => dispatch(getPosts()))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -127,6 +128,7 @@ export const deleteComment = (postId, commentId) => dispatch => {
                 type: GET_POST,
                 payload: res.data
             }))
+        .then(res => dispatch(getPosts()))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,

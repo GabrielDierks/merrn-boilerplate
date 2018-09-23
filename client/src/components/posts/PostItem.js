@@ -14,16 +14,6 @@ class PostItem extends Component {
             showComments: false,
         };
     }
-//TODO comments only appear after reload
-    componentDidMount() {
-        // // this.props.getPost(this.props.post._id);
-        // console.log(this.props);
-        // console.log(this.props.post._id);
-        if (this.props.post.post !== undefined)
-        {
-            console.log(this.props.post.post.comments);
-        }
-    }
 
     onDeleteClick(id) {
         this.props.deletePost(id);
