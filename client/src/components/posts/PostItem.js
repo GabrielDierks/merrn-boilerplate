@@ -8,10 +8,12 @@ import CommentForm from './CommentForm';
 import CommentFeed from './CommentFeed';
 
 class PostItem extends Component {
+    //TODO like doesnt likeGreen doesnt load on start
     constructor(props) {
         super(props);
         this.state = {
             showComments: false,
+            likeGreen: false
         };
     }
 
@@ -21,9 +23,11 @@ class PostItem extends Component {
 
     onLikeClick(id) {
         this.props.addLike(id);
+        this.setState({ likeGreen: !this.state.likeGreen })
     }
     onUnlikeClick(id) {
         this.props.removeLike(id);
+        this.setState({ likeGreen: !this.state.likeGreen })
     }
 
     findUserLike(likes) {
@@ -36,10 +40,13 @@ class PostItem extends Component {
         }
     }
 
+
+
     render() {
         const { post, auth, showActions } = this.props;
 
         const comments = this.props.post.comments.length;
+
 
         return (
             <div className="card card-body mb-3">
@@ -70,7 +77,7 @@ class PostItem extends Component {
                                 >
                                     <i
                                         className={classnames('fas fa-thumbs-up', {
-                                            'text-info': this.findUserLike(post.likes),
+                                            'text-info': this.state.likeGreen,
                                         })}
                                     />
                                     <span className="badge badge-light">{post.likes.length}</span>
